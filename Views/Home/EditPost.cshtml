@@ -1,0 +1,77 @@
+﻿@using CarRental.Entities
+@using CarRental.Models.PostVehicle
+
+@model PostVehicleVM;
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Chỉnh sửa bài đăng";
+    var cate = ViewData["cate"] as PostVehicle;
+}
+<style>
+    input {
+        width: 50% !important;
+    }
+</style>
+<a href="/bai-dang" class="btn btn-outline-danger mb-3 mt-4 ">Quay lại</a>
+<form class="user mb-4" action="/chinh-sua-bai-dang" method="post" enctype="multipart/form-data">
+    <input type="hidden" asp-for="@Model.Id" />
+    <input type="hidden" asp-for="@Model.Status" />
+
+    <div class="form-group ">
+        <label>Tên xe</label>
+        <input asp-for="@Model.VehicleName" class="form-control form-control-user mb-3"
+               required placeholder="Tên xe" />
+        <label>Nhiên liệu</label>
+        <input asp-for="@Model.VehicleFuel" class="form-control form-control-user mb-3"
+               required placeholder="Nhiên liệu" />
+        <label>Loại</label>
+        <input asp-for="@Model.VehicleType" class="form-control form-control-user mb-3"
+               required placeholder="Loại" />
+        <label>Năm sản xuất</label>
+        <input asp-for="@Model.VehicleYear" class="form-control form-control-user mb-3"
+               required placeholder="Năm sản xuất" />
+        <label>Số ghế</label>
+        <input asp-for="@Model.VehicleSeat" class="form-control form-control-user mb-3"
+               required placeholder="Số ghế" />
+        <label>Tiêu đề</label>
+        <input asp-for="@Model.Title" class="form-control form-control-user mb-3"
+               required placeholder="Tiêu đề" />
+        <label>Mô tả</label>
+        <input asp-for="@Model.Description" class="form-control form-control-user mb-3"
+               required placeholder="Mô tả" />
+        <div>
+            <label>Hình ảnh</label>
+            <input asp-for="@Model.Image" placeholder="Hình ảnh" />
+        </div>
+
+        <div>
+            <label>Loại</label>
+            <div class="form-group w-50">
+                @{
+                    var o = Model.Category == "Ô tô" ? "selected" : "";
+                    var x = Model.Category == "Xe máy" ? "selected" : "";
+                }
+                <select name="Category" class="form-control">
+                    <!option @o value="Ô tô">Ô tô</!option>
+                    <!option @x value="Xe máy">Xe máy</!option>
+                </select>
+            </div>
+        </div>
+        <label>Giá</label>
+        <input asp-for="@Model.Price" class="form-control form-control-user mb-3"
+               required placeholder="Giá" />
+        <label>Địa chỉ</label>
+        <input asp-for="@Model.Address" class="form-control form-control-user mb-3"
+               required placeholder="Địa chỉ" />
+        <label>PlaceId</label>
+        <input asp-for="@Model.PlaceId" class="form-control form-control-user mb-3"
+               required placeholder="PlaceId" />
+        <a href="https://developers.google.com/maps/documentation/places/web-service/place-id" target="_blank">Lấy placeId của địa điểm bạn muốn tổ chức</a>
+    </div>
+    <div class="mt-3 d-flex justify-content-center">
+        <button type="submit" class="w-50 btn btn-primary btn-user btn-block">
+            Chỉnh sửa
+        </button>
+    </div>
+</form>

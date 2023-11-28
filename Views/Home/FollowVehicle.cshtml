@@ -1,0 +1,74 @@
+﻿@using CarRental.Entities
+@model List<FollowVehicle>
+@inject IHttpContextAccessor HttpContextAccessor
+
+@{
+    var isApproved = bool.Parse(HttpContextAccessor.HttpContext.Session.GetString("IsApproved"));
+    var isApproving = bool.Parse(HttpContextAccessor.HttpContext.Session.GetString("IsApproving"));
+}
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Danh sách yêu thích";
+}
+<style>
+    .nav-borders .nav-link.active {
+        color: #0061f2;
+        border-bottom-color: #0061f2;
+        border-bottom: 2px solid;
+    }
+</style>
+<div class="container-xl px-4 mt-5 mb-5" style="min-height: 70vh;">
+    <!-- Account page navigation-->
+    <nav class="nav nav-borders">
+        <a class="nav-link" href="/thong-tin-tai-khoan/chi-tiet">Thông tin</a>
+        <a class="nav-link" href="/xe-da-dat">Xe đã thuê</a>
+        <a class="nav-link  active ms-0" href="/danh-sach-yeu-thich">Danh sách yêu thích</a>
+        @if (isApproved)
+        {
+            <a class="nav-link" href="/bai-dang">Bài đăng</a>
+        }
+    </nav>
+    <hr class="mt-0 mb-4">
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Danh sách yêu thích</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered display nowrap" id="dataTable" cellspacing="0" style="width: 100%;">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Ảnh</th>
+                            <th>Tên phương tiện</th>
+                            <th>Địa chỉ</th>
+                            <th>Giá</th>
+                            <th>Loại phương tiện</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            var temp = item.Status;
+                            <tr>
+                                <td>@item.Id</td>
+                                <td><img width="100" height="100" src="@item?.PostVehicle.Image" /></td>
+                                <td>@item?.PostVehicle.VehicleName</td>
+                                <td>@item?.PostVehicle.Address</td>
+                                <td>@item?.PostVehicle.Price</td>
+                                <td>@item?.PostVehicle.Category</td>
+                                <td>
+                                    <a href="/bo-theo-doi/@item.Id" class="btn btn-success">Xoá</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

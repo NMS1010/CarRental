@@ -1,0 +1,96 @@
+﻿@using CarRental.Models.User
+@model ApprovalApplicationVM;
+@inject IHttpContextAccessor HttpContextAccessor
+
+@{
+    var isApproving = bool.Parse(HttpContextAccessor.HttpContext.Session.GetString("IsApproving"));
+    var isApproved = bool.Parse(HttpContextAccessor.HttpContext.Session.GetString("IsApproved"));
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Trở thành đối tác";
+}
+
+<div class="container">
+
+    <!-- Outer Row -->
+    <div class="row justify-content-center">
+
+        <div class="col-xl-10 col-lg-12 col-md-9">
+
+            <div class="card o-hidden border-0 shadow-lg my-5">
+                <div class="card-body p-0">
+                    <!-- Nested Row within Card Body -->
+                    <div class="row">
+                        <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                        <div class="col-lg-6">
+                            <div class="p-5">
+                                <div class="text-center">
+                                    @{
+                                        var mess = "Đăng ký làm đối tác!";
+                                        if(isApproving)
+                                        {
+                                            mess = "Đang chờ duyệt!";
+                                        }
+                                        else if(isApproved)
+                                        {
+                                            mess = "Bạn đã trở thành đối tác";
+                                        }
+                                    }
+                                    <h1 class="h4 text-gray-900 mb-4">@mess</h1>
+                                </div>
+                                @if (!isApproving && !isApproved)
+                                {
+                                    <form class="user" method="post" action="/approve">
+                                        <div class="form-group">
+                                            <label>Tên chủ xe</label>
+                                            <input style="width:100%;" asp-for="@Model.Name" class="form-control form-control-user" required />
+                                        </div>
+                                        <div class="form-group mt-3">
+                                            <label>Số điện thoại</label>
+                                            <input style="width:100%;" asp-for="@Model.Phone" class="form-control form-control-user" required />
+                                        </div>
+                                        <div class="form-group mt-3">
+                                            <label>Email</label>
+                                            <input style="width:100%;" asp-for="@Model.Email" class="form-control form-control-user" required />
+                                        </div>
+                                        <div class="form-group mt-3">
+                                            <label>Địa chỉ</label>
+                                            <input style="width:100%;" asp-for="@Model.Address" class="form-control form-control-user" required />
+                                        </div>
+                                        <div class="form-group mt-3">
+                                            <label>Tiêu đề</label>
+                                            <input style="width:100%;" asp-for="@Model.Title" class="form-control form-control-user" required />
+                                        </div>
+                                        <div class="form-group mt-3">
+                                            <label>Nội dung</label>
+                                            <input style="width:100%;" asp-for="@Model.Description" class="form-control form-control-user" required />
+                                        </div>
+                                        <div class="form-group mt-3">
+                                            <label>Mã số thuế/CCCD</label>
+                                            <input style="width:100%;" asp-for="@Model.Identity" class="form-control form-control-user" required />
+                                        </div>
+                                        <div class="form-group mt-3">
+                                            <label>Loại hình</label>
+                                            <select name="Type" required>
+                                                <option selected value="0">Cá nhân</option>
+                                                <option value="1">Công ty</option>
+                                            </select>
+                                        </div>
+                                        <p>@ViewData["Message"]</p>
+                                        <button type="submit" class="btn btn-primary btn-user btn-block mt-3">
+                                            Đăng ký
+                                        </button>
+                                    </form>
+                                }
+                                
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

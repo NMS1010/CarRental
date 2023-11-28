@@ -1,0 +1,79 @@
+﻿@using CarRental.Entities
+@model List<UserRentVehicle>
+@inject IHttpContextAccessor HttpContextAccessor
+
+@{
+    var isApproved = bool.Parse(HttpContextAccessor.HttpContext.Session.GetString("IsApproved"));
+    var isApproving = bool.Parse(HttpContextAccessor.HttpContext.Session.GetString("IsApproving"));
+}
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Danh sách thuê";
+}
+<style>
+    .nav-borders .nav-link.active {
+        color: #0061f2;
+        border-bottom-color: #0061f2;
+        border-bottom: 2px solid;
+    }
+</style>
+<div class="container-xl px-4 mt-5 mb-5" style="min-height: 70vh;">
+    <!-- Account page navigation-->
+    <nav class="nav nav-borders">
+        <a class="nav-link" href="/thong-tin-tai-khoan/chi-tiet">Thông tin</a>
+        <a class="nav-link active ms-0" href="/xe-da-dat">Xe đã thuê</a>
+        <a class="nav-link" href="/danh-sach-yeu-thich">Danh sách yêu thích</a>
+        @if (isApproved)
+        {
+            <a class="nav-link" href="/bai-dang">Bài đăng</a>
+        }
+    </nav>
+    <hr class="mt-0 mb-4">
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Danh sách thuê</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered display nowrap" id="dataTable" cellspacing="0" style="width: 100%;">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Tên phương tiện</th>
+                            <th>Tên người đặt</th>
+                            <th>Điện thoại</th>
+                            <th>Email</th>
+                            <th>Giá</th>
+                            <th>Ngày nhận</th>
+                            <th>Ngày trả</th>
+                            <th>Ngày đặt</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Id</td>
+                                <td>@item?.PostVehicle.VehicleName</td>
+                                <td>@item?.Name</td>
+                                <td>@item?.Phone</td>
+                                <td>@item?.Email</td>
+                                <td>@item?.TotalPrice</td>
+                                <td>@item?.StartDate.ToString()</td>
+                                <td>@item?.EndDate.ToString()</td>
+                                <td>@item?.CreatedAt.ToString()</td>
+                                <td>
+                                    <a href="/chi-tiet-xe/@item.PostVehicleId" class="btn btn-outline-danger">Chi tiết phương tiện</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

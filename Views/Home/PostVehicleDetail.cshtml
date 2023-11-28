@@ -1,0 +1,219 @@
+﻿@using CarRental.Entities
+@inject IHttpContextAccessor HttpContextAccessor
+
+@{
+    var name = HttpContextAccessor.HttpContext.Session.GetString("Name");
+    long.TryParse(HttpContextAccessor.HttpContext.Session.GetString("UserId"), out long userId);
+}
+@model PostVehicle
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Chi tiết bài đăng";
+}
+
+<div class="col_main_lg">
+
+    <div class="product_details clearfix">
+        <div class="wrap_row clearfix">
+            <div class="extra_details">
+                <img src="@Model.Image" alt="@Model.VehicleName" />
+            </div>
+            <div class="extra_details">
+                <h1 style="font-size: 26px;padding: 20px 0;font-weight: bold;padding-top: 10px;"> @Model.Title</h1>
+                <h1 style="font-size: 20px;padding: 20px 0;font-weight: bold;padding-top: 10px;">Danh mục: @Model.Category</h1>
+                <div class="rating" style="font-size:20px;">
+                    @{
+                        var rating = 0.0;
+                        var lst = Model.UserRewviewCars.Where(x => x.Status).ToList();
+                        if (lst != null && lst.Count > 0)
+                        {
+                            rating = lst.Average(x => x.Rating);
+                        }
+                     }
+                    Đánh giá: @Model.Rating / 5
+                </div>
+                <div>
+                    @if(userId > 0)
+                    {
+                        var txt = "Theo dõi";
+                        var url = "/theo-doi/" + Model.Id;
+                        if (Model.FollowVehicles != null && Model.FollowVehicles.Any(x => x.UserId == userId && x.PostVehicleId == Model.Id))
+                        {
+                            txt = "Bỏ theo dõi";
+                            url = "/bo-theo-doi/" + Model.Id;
+                        }
+                        <a class="btn btn-danger mt-3 mb-3" style="color: white" href="@url">@txt</a>
+                    }
+                </div>
+                <div class="tableparameter">
+                    <ul class="parameter">
+                        <li><span>Tên xe:</span><div>@Model.VehicleName</div></li>
+                        <li><span>Số chỗ:</span><div>@Model.VehicleSeat chỗ</div></li>
+                        <li><span>Loại hộp số:</span><div>@Model.VehicleType</div></li>
+                        <li><span>Loại máy:</span><div>@Model.VehicleFuel</div></li>
+                        <li><span>Địa chỉ:</span><div>@Model.Address</div></li>
+                        <li><span>Nhiên liệu:</span><div>@Model.VehicleFuel</div></li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row mt-xlg">
+        <div class="col-md-12">
+            <div class="mb-md">
+                <div class="b-tit">Địa chỉ</div>
+                <p>@Model.Address</p>
+                <iframe class="thumbnail-img"
+                        frameborder="0" style="border:0"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDWTx7bREpM5B6JKdbzOvMW-RRlhkukmVE&q=place_id:@Model.PlaceId"
+                        allowfullscreen>
+                </iframe>
+            </div>
+            <div class="mb-md">
+                <div class="b-tit">Mô tả</div>
+                <p>@Model.Description</p>
+            </div>
+            <div class="mb-md">
+                <div class="b-tit">TÍNH NĂNG</div>
+                <div class="row i-lg">
+                    <div class="col-lg-4 col-md-6 mb-md">
+                        <img src="/client/static/img/ic-brakes.png" alt="Điều hoà (A/C) " class="vhc_icon"><span>Điều hoà (A/C) </span>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mb-md"><img src="/client/static/img/ic-gprs.png" alt="Định vị (GPS) " class="vhc_icon"><span>Định vị (GPS) </span></div>
+                    <div class="col-lg-4 col-md-6 mb-md"><img src="/client/static/img/ic-bluetooth.png" alt="Bluetooth " class="vhc_icon"><span>Bluetooth </span></div>
+                    <div class="col-lg-4 col-md-6 mb-md"><img src="/client/static/img/ic-usb.png" alt="Khe cắm USB" class="vhc_icon"><span>Khe cắm USB</span></div>
+                </div>
+            </div><div class="mb-md">
+                <div class="b-tit">THỦ TỤC</div><div class="row i-lg">
+                    <div class="col-lg-4 col-md-6 mb-md"><span style="float: left;"><img src="/client/static/img/CMND.png" alt="procedure" class="vhc_icon"></span><span style="float: left; width: auto;">CMND</span></div><div class="col-lg-4 col-md-6 mb-md"><span style="float: left;"><img src="/client/static/img/ic-cmnd.png" alt="procedure" class="vhc_icon"></span><span style="float: left; width: auto;">Sổ hộ khẩu</span></div><div class="col-lg-4 col-md-6 mb-md"><span style="float: left;"><img src="/client/static/img/banglai.png" alt="procedure" class="vhc_icon"></span><span style="float: left; width: auto;">Bằng lái</span></div><div class="col-lg-4 col-md-6 mb-md"><span style="float: left;"><img src="/client/static/img/ic-money.png" alt="procedure" class="vhc_icon"></span><span style="float: left; width: auto;">Đặt cọc</span></div>
+                </div>
+            </div><div class="mb-md"><div class="b-tit">CHẤP NHẬN THANH TOÁN</div><div class="row i-lg"><div class="col-lg-4 col-md-6 mb-md"><span style="float: left;"><img src="/client/static/img/ic-money.png" alt="payment" class="vhc_icon"></span><span style="float: left; width: 73%;">Trả sau</span></div></div></div><div class="mb-md"><div class="b-tit">GHI CHÚ</div><div><p> - CMND: Bản gốc</p><p> - Sổ hộ khẩu: Bản gốc hoặc KT3</p><p> - Bằng lái: B2 trở lên</p><p> - Đặt cọc: Xe máy chính chủ + giấy đăng ký xe hoặc đặt cọc tiền mặt tối thiểu 20 triệu</p></div></div>
+        </div>
+    </div>
+
+    @if(name != null)
+    {
+        <div class="" id="comment">
+            <div class="clearfix">
+                <h1 style="font-size:23px; font-weight:bold;">Đánh giá sản phẩm @Model.VehicleName </h1>
+                <span id="btnrank" hidden>Gửi đánh giá của bạn</span>
+            </div>
+            <div id="comment_wrapper">
+                <form action="/review" method="post" class="clearfix">
+                    <div class="star-rank mt-3" style="display: flex; flex-direction: column;">
+                        <h2 style="font-weight: bold;">Chọn đánh giá của bạn</h2>
+                        <div>
+                            <input type="radio" name="rating" value="1" tabindex="6" class="radio rank_star" title="Không thích" />
+                            <label>1 sao</label>
+                            <input type="radio" name="rating" value="2" tabindex="5" class="radio rank_star" title="Tạm được" />
+                            <label>2 sao</label>
+                            <input type="radio" name="rating" value="3" tabindex="4" class="radio rank_star" title="Bình thường" />
+                            <label>3 sao</label>
+                            <input type="radio" name="rating" value="4" tabindex="3" class="radio rank_star" title="Rất tốt" />
+                            <label>4 sao</label>
+                            <input type="radio" name="rating" value="5" checked="checked" class="radio rank_star" title="Quá tuyệt vời" />
+                            <label>5 sao</label>
+                            <em id="star_tip"></em>
+                        </div>
+                    </div>
+                    <div class="action-comment clearfix mt-3">
+                        <div>
+                            <p>Nội dung</p>
+                            <textarea style="width:100%;" name="content" id="cmcontent" rows="3" required placeholder="Nhập đánh giá về dịch vụ, ít nhất 30 ký tự">
+
+                        </textarea>
+                        </div>
+                        <div class="col-input">
+                            <p>Điểm tin cậy (0-10)</p>
+                            <input type="number" style="width:100%;" min="1" max="10" name="trustPoint" class="input-text" required placeholder="Điểm tin cậy">
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-3">Gửi đánh giá</button>
+                        <div class="col-submit">
+                            <input type="hidden" name="postVehicleId" value="@Model.Id">
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </form>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    }
+    <div>
+        <h1 style="font-size:23px; font-weight:bold;" class="mt-4">Danh sách đánh giá</h1>
+        <div>
+            @foreach(var review in Model?.UserRewviewCars)
+            {
+                if (review.Status)
+                {
+                    <div class="d-flex align-items-center mb-2">
+                        <img src="@review.User.Avatar" width="50" height="50" />
+                        <div class="ml-3">
+                            <p style="font-weight: bold; font-size: 15px;">@review.User.Name</p>
+                            <p>Số sao: @review.Rating / 5 sao</p>
+                            <p>Độ tin cây: @review.TrustPoint / 10</p>
+                            <p>@review.Content</p>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+<div class="col_sub_lg">
+    <div class="details">
+        <div class="rowl">
+            <form action="javascript:buy(1614)" method="post" id="purchase_form">
+                <div class="properties clearfix">
+                    <input type="hidden" name="spec_list" value="2">
+                </div>
+                <p class="total_money">Thanh toán: <span class="price amount">@Model.Price ₫</span></p>
+            </form>
+            <div class="actions clearfix">
+                <div class="promotion">
+                </div>
+                <div class="form-group"><div class="head-title">GIỚI HẠN QUÃNG ĐƯỜNG</div><ul class="form-control-static pt-none"><li>Tối đa 250 km/ngày</li><li>Phụ trội 3.000 đ/km</li></ul></div>
+                @if(name != null)
+                {
+                    <div id="quick_order">
+                        <div class="requestcall2">
+                            <form name="quickorder" action="/dat-xe" method="post">
+                                <div class="input_price">
+                                    <span style="float: right;line-height: 35px;"><strong>ĐẶT XE NHANH</strong></span>
+                                </div>
+                                <div class="group_input">
+                                    <input style="float:left;width:49%" class="input-order" type="text" name="name" placeholder="Họ tên (bắt buộc)" required>
+                                    <input style="float:right !important;width:49%" class="input-order" type="text" name="phone" placeholder="Số điện thoại (bắt buộc)" required>
+                                </div>
+                                <div class="address">
+                                    <input class="input-order" type="text" name="address" required placeholder="Địa chỉ (bắt buộc)">
+                                    <input class="input-order" type="text" name="email" required placeholder="Email (bắt buộc)">
+                                    <input class="input-order" type="text" name="note" placeholder="Yêu cầu khác">
+                                </div>
+                                <div class="group_input w-100">
+                                    <p>Ngày nhận</p>
+                                    <input type="datetime-local" id="dateCheckIn" class="form-control w-100" name="startDate" placeholder="Ngày nhận" />
+                                </div>
+                                <div class="group_input w-100">
+                                    <p>Ngày trả</p>
+                                    <input type="datetime-local" id="dateCheckOut" name="endDate" class="form-control w-100" placeholder="Ngày trả" />
+                                </div>
+                                <input type="hidden" name="postVehicleId" value="@Model.Id">
+                                <input type="hidden" name="totalPrice" value="@Model.Price">
+                                <button type="submit" class="buy_now btn btn-danger mt-3">Đặt xe</button>
+                            </form>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <h1 class="mt-5" style="font-size:23px; font-weight: bold;">Vui lòng đăng nhập để đặt xe</h1>
+                }
+            </div>
+
+        </div>
+    </div>
+</div>

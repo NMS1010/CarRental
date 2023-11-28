@@ -1,0 +1,276 @@
+﻿@inject IHttpContextAccessor HttpContextAccessor
+
+@{
+    var avatar = HttpContextAccessor.HttpContext.Session.GetString("Avatar");
+    var name = HttpContextAccessor.HttpContext.Session.GetString("Name");
+    var role = HttpContextAccessor.HttpContext.Session.GetString("Role");
+}
+
+<!doctype html>
+<html lang="vi" prefix="og: http://ogp.me/ns#">
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html" charset="utf-8">
+	
+    <base >
+	<meta name="viewport" content="width=device-width">
+	<title>Dịch Vụ Cho Thuê Xe Tự Lái, Có Lái, Xe Hợp Đồng Du Lịch Cưới Hỏi, Xe Công Tác</title>
+    <meta name="description" content="Dịch vụ cho thuê xe tự lái, thuê xe có lái, xe du lịch cưới hỏi, xe công tác... Dịch vụ chuyên nghiệp, uy tín nhất tại Hà Nội"/>
+	<meta name="keywords" content="thuê xe tự lái, thuê xe có lái, thuê xe du lịch, thuê xe cưới hỏi, thuê xe công tác"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="RATING" content="GENERAL" />
+    <meta content="INDEX,FOLLOW" name="robots" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="copyright" content="CÔNG TY CỔ PHẦN ASCS VIỆT NAM" />
+    <meta name="author" content="CÔNG TY CỔ PHẦN ASCS VIỆT NAM" />
+    <meta http-equiv="audience" content="General" />
+    <meta name="resource-type" content="Document" />
+    <meta name="distribution" content="Global" />
+    <meta name="revisit-after" content="1 days" />
+    <meta name="GENERATOR" content="CÔNG TY CỔ PHẦN ASCS VIỆT NAM" />
+            <meta itemprop="image" content="/client/static/img/logo-ascar.png" />
+        <meta property="og:image" content="/client/static/img/logo-ascar.png" />
+                <link rel="canonical" href="index7880.html?gclid=CjwKCAiAmZGrBhAnEiwAo9qHiaa8txW_WQN_KztcZXSF8l1FfsyOATVyB_hkNgnywPOA9OG_vxu_UBoCNaAQAvD_BwE" />
+        <meta property="og:url" itemprop="url" content="index7880.html?gclid=CjwKCAiAmZGrBhAnEiwAo9qHiaa8txW_WQN_KztcZXSF8l1FfsyOATVyB_hkNgnywPOA9OG_vxu_UBoCNaAQAvD_BwE" />
+                <meta property="og:site_name" content="CÔNG TY CỔ PHẦN ASCS VIỆT NAM" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="vi_VN" />
+    <meta property="fb:app_id" content="" />
+    <link href="/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="/admin/css/sb-admin-2.min.css" rel="stylesheet">
+    <!-- Custom styles for this page -->
+    <link href="/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+	<link rel="shortcut icon" type="image/x-icon" href="/client/static/img/favicon.png">
+<script type="application/ld+json">
+        {
+          "@@context": "http://schema.org",
+          "@@type": "WebSite",
+          "alternateName": "CÔNG TY CỔ PHẦN ASCS VIỆT NAM",
+          "url": "https://xetulaigiare.vn/",
+          "potentialAction": {
+            "@@type": "SearchAction",
+            "target": "tim-kiem?keywords={keywords}",
+            "query-input": "required name=keywords"
+          }
+        }
+</script>
+<script type="application/ld+json">
+        {
+          "@@context": "http://schema.org",
+          "@@type": "Organization",
+          "url": "https://xetulaigiare.vn/",
+          "logo": "https://xetulaigiare.vn/static/img/logo-ascar.png",
+          "contactPoint": [{
+            "@@type": "ContactPoint",
+            "telephone": "+84 0901215215",
+            "contactType": "Customer service"
+          }]
+        }
+</script>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'../www.googletagmanager.com/gtm5445.html?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MBPCGP3');</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-149831668-13"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-149831668-13');
+    </script>
+    <link rel="stylesheet" type="text/css" href="/client/static/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="/client/static/css/style-detail.css" />
+
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MBPCGP3"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<header class="headindex">
+<div class="header-top">
+        <div class="wrap-main">
+            <div class="top_nav clearfix">
+                @if(avatar != null && name != null && role != "ADMIN")
+                {
+                    <a style="line-height:normal !important;" class="btn btn-success" href="/doi-tac">Trở thành đối tác</a>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="htop">
+        <div class="wrap-main">
+            <a class="logo" title="Về trang chủ" href="/">
+                <img src="/client/static/img/logo.png" alt="CÔNG TY CỔ PHẦN ASCS VIỆT NAM">
+            </a>
+            <form id="search-site" action="/tim-xe" method="get" autocomplete="off">
+                <input class="topinput" id="search-keyword" name="search" type="text" tabindex="1" value="" placeholder="Nhập sản phẩm..." autocomplete="off"  maxlength="50">
+                    <button class="btntop" type="submit" style="background-color:red;"><p style="margin-left:-5px">Tìm </p></button>
+            </form>
+            <div class="htop-r">
+                    @if(avatar != null && name != null)
+                    {
+                        <div class="d-flex align-items-center">
+                            <div>
+                                <img style="border-radius: 50%;" src="@avatar" width="50" height="50" />
+                                <a href="/thong-tin-tai-khoan/chi-tiet">@name</a>
+                            </div>
+                            <span class="ml-3"><a href="/auth/logout">Đăng xuất</a></span>
+                        </div>
+                    }
+                    else
+                    {
+                        <span><a href="/auth/login">Đăng nhập</a></span>
+                        <span><a href="/auth/register">Đăng ký</a></span>
+                    }
+            </div>
+        </div>
+    </div>
+</header>
+<section>
+    <div class="clr clearfix"></div>
+     
+     <div class="clr clearfix"></div>
+    @RenderBody()
+</section>
+<footer>
+    <div class="rowfoot1">
+        <ul class="colfoot" style="width: 41%;padding-left: 10px">
+             <li>
+                <strong style="line-height: 30px;">CÔNG TY CỔ PHẦN ASCS VIỆT NAM</strong>
+<div class="buycall"><b style="margin-top: 10px;">Văn phòng : </b><br> <p>92M Ô Chợ Dừa (phố Xã Đàn mới kéo dài) – Đống Đa, Hà Nội.</p></div>
+<div class="buycall"><b style="margin-top: 10px;">Văn phòng : </b><br><p>Số 10, ngõ 168, Nguyễn Xiển, Hạ Đình, Thanh Xuân, HN.</p></div>
+            </li>
+        </ul>
+        <ul class="colfoot" style="width: 30%;padding-left: 10px">
+             <li>
+                <strong style="line-height: 30px;">THÔNG TIN</strong>
+                <p>Hotline: 0901215215</p>
+                <p>Email: ascarvietnam@gmail.com</p>
+            </li>
+             <li class="linksocial"><a href="#" target="_blank"><i class="iconbkit-ssface"></i></a> <i class="iconbkit-ssgplus"></i> <i class="iconbkit-ssyoutube"></i> <i class="iconbkit-sstwiter"></i><img style="height: 38px;vertical-align: middle;" src="static/img/dathongbao.png" alt=""></li>
+        </ul>
+        <ul class="colfoot" >
+            <li><a href="thong-tin/gioi-thieu-1.html">Giới thiệu</a></li>
+            <li><a href="lien-he.html">Liên hệ</a></li>
+            <li><a href="he-thong-co-so.html">Hệ thống cơ sở</a></li>
+            <li><a href="javascript:window.location.href='index44b1.html?gclid=CjwKCAiAmZGrBhAnEiwAo9qHiaa8txW_WQN_KztcZXSF8l1FfsyOATVyB_hkNgnywPOA9OG_vxu_UBoCNaAQAvD_BwE&amp;client=mobile'" rel="nofollow">Phiên bản Mobile</a></li>
+        </ul>
+    </div>
+    <div class="rowfoot2">
+        <p>&copy; 2005-2023 CÔNG TY CỔ PHẦN ASCS VIỆT NAM Copyright, All Rights Reserved.</p>
+    </div>
+</footer>
+<div class="quick-alo-phone quick-alo-green quick-alo-show" id="quick-alo-phoneIcon">
+  <a href="tel:0901215215">
+     <div class="quick-alo-ph-circle"></div>
+     <div class="quick-alo-ph-circle-fill"></div>
+     <div class="quick-alo-ph-img-circle"></div>
+  </a>
+</div>
+<a href="#top" rel="nofollow" title="Về Đầu Trang" id="back-top"><i class="iconbkit-gotop"></i></a>
+<div id="quick_support"> <a data-tip="Chat với tư vấn viên" data-mode="above" href="#" target="_blank"><i class="iconbkit-fmessenger"></i> Tư vấn</a> </div>
+
+<script  type="text/javascript" src="/client/static/disc/js/index.Desktop.min6123.js?ver=1557644638"></script><script>
+    $(document).ready(function() {
+      var sync1 = $("#sync1");
+      var sync2 = $("#sync2");
+      sync1.owlCarousel({
+        singleItem : true,
+        slideSpeed : 500,
+        lazyLoad : true,
+        autoPlay : 5000,
+        navigation: true,
+        navigationText: ['‹','›'],
+        pagination:false,
+        afterAction : syncPosition,
+        responsiveRefreshRate : 200,
+      });
+      sync2.owlCarousel({
+        items :5,
+        pagination:false,
+        responsiveRefreshRate : 100,
+        afterInit : function(el){
+          el.find(".owl-item").eq(0).addClass("synced");
+        }
+      });
+      function syncPosition(el){
+        var current = this.currentItem;
+        $("#sync2")
+          .find(".owl-item")
+          .removeClass("synced")
+          .eq(current)
+          .addClass("synced")
+        if($("#sync2").data("owlCarousel") !== undefined){
+          center(current)
+        }
+      }
+      $("#sync2").on("click", ".owl-item", function(e){
+        e.preventDefault();
+        var number = $(this).data("owlItem");
+        sync1.trigger("owl.goTo",number);
+      });
+      function center(number){
+        var sync2visible = sync2.data("owlCarousel").owl.visibleItems;
+        var num = number;
+        var found = false;
+        for(var i in sync2visible){
+          if(num === sync2visible[i]){
+            var found = true;
+          }
+        }
+        if(found===false){
+          if(num>sync2visible[sync2visible.length-1]){
+            sync2.trigger("owl.goTo", num - sync2visible.length+2)
+          }else{
+            if(num - 1 === -1){
+              num = 0;
+            }
+            sync2.trigger("owl.goTo", num);
+          }
+        } else if(num === sync2visible[sync2visible.length-1]){
+          sync2.trigger("owl.goTo", sync2visible[1])
+        } else if(num === sync2visible[0]){
+          sync2.trigger("owl.goTo", num-1)
+        }
+      }
+    $("#recommend_best").owlCarousel({
+        items: 5,
+        slideSpeed : 500,
+        lazyLoad : true,
+        navigation: true,
+        navigationText: ['‹','›'],
+        pagination:false,
+        responsiveRefreshRate : 200
+      });
+});
+</script>
+
+    <!-- Page level plugins -->
+    <script src="/admin/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="js/demo/datatables-demo.js"></script>
+    <script>
+        $(document).ready(function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const path = location.protocol + '//' + location.host + location.pathname;
+            const error = urlParams.get('error')
+            const success = urlParams.get('success')
+            if (error == 'true') {
+                alert('Thao tác thất bại');
+                history.pushState(null, '', path);
+            } else if (success == 'true') {
+                alert('Thao tác thành công');
+                history.pushState(null, '', path);
+            }
+        });
+    </script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

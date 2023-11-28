@@ -1,0 +1,52 @@
+﻿@using CarRental.Entities;
+@model List<UserReviewVehicle>
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewData["Title"] = "Danh sách đánh giá";
+}
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Danh sách đánh giá</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered display nowrap" id="dataTable" cellspacing="0" style="width: 100%;">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Người dùng</th>
+                        <th>Phương tiện</th>
+                        <th>Chủ phương tiện</th>
+                        <th>Số sao</th>
+                        <th>Nội dung</th>
+                        <th>Độ tin cậy</th>
+                        <th>Trạng thái</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var review in Model)
+                    {
+                        var temp = review.Status;
+                        <tr>
+                            <td>@review?.Id</td>
+                            <td><img src="@review?.User?.Avatar" alt="Avatar" width="100" height="100" /></td>
+                            <td>@review?.PostVehicle?.VehicleName</td>
+                            <td>@review?.PostVehicle?.User?.Name</td>
+                            <td>@review?.Rating</td>
+                            <td>@review?.Content</td>
+                            <td>@review?.TrustPoint</td>
+                            <td class="">@(temp ? "Hiển thị" : "Ẩn")</td>
+                            <td>
+                                <a href="/admin/reviews/toggle/@review.Id" class="btn btn-success">Đổi trạng thái</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

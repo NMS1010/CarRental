@@ -1,0 +1,56 @@
+﻿@using CarRental.Entities
+@model List<PostVehicle>
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewData["Title"] = "Danh sách bài đăng";
+}
+
+<!-- Page Heading -->
+
+@* <a href="/admin/post-vehicles/create" class="btn btn-info h3 mb-2 ">Tạo mới</a> *@
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Danh sách bài đăng</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered display nowrap" id="dataTable" cellspacing="0" style="width: 100%;">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Ảnh</th>
+                        <th>Tiêu đề</th>
+                        <th>Địa chỉ</th>
+                        <th>Giá</th>
+                        <th>Loại phương tiện</th>
+                        <th>Đánh giá</th>
+                        <th>Trạng thái</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var post in Model)
+                    {
+                        var temp = post.Status;
+                        <tr>
+                            <td>@post.Id</td>
+                            <td><img width="100" height="100" src="@post.Image" /></td>
+                            <td>@post.Title</td>
+                            <td>@post.Address</td>
+                            <td>@post.Price</td>
+                            <td>@post.Category</td>
+                            <td>@post.Rating</td>
+                            <td>@(temp ? "Hiển thị" : "Ẩn")</td>
+                            <td>
+                                @* <a href="/admin/post-vehicles/edit/@post.Id" class="btn btn-success">Sửa</a> *@
+                                <a href="/admin/post-vehicles/toggle/@post.Id" class="btn btn-danger">Đổi trạng thái</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
